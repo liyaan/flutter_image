@@ -6,6 +6,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'WaterMarkPage.dart';
+import 'data_img_util.dart';
 
 void main() {
   runApp(const MyApp());
@@ -42,18 +43,21 @@ class _MyHomePageState extends State<MyHomePage> {
       _counter++;
     });
     //拍照
-    XFile? file = await ImagePicker.platform.getImage(source: ImageSource.camera);
+    XFile? file = await ImagePicker.platform.getImage(source: ImageSource.camera).then((value){
+      print(value!.path);
+      imageAddWaterMark(value!.path,"测试");
+    });
 
 //拍照图传至WaterMarkPage返回水印图
-    Get.to(WaterMarkPage(file!.path))?.then((newSignImg){
-      print(newSignImg);
-      File file = new File(newSignImg);
-      print(file.existsSync());
-      //上传水印图
-      // ApiCommonRequest.uploadFile(HttpUrls.api_img_upload, newSignImg, Constants.FILE_IMAGE, onSuccess: (String fileUrl) {
-      //   print("图片上传成功:${fileUrl}");
-      // });
-    });
+//     Get.to(WaterMarkPage(file!.path))?.then((newSignImg){
+//       print(newSignImg);
+//       File file = new File(newSignImg);
+//       print(file.existsSync());
+//       //上传水印图
+//       // ApiCommonRequest.uploadFile(HttpUrls.api_img_upload, newSignImg, Constants.FILE_IMAGE, onSuccess: (String fileUrl) {
+//       //   print("图片上传成功:${fileUrl}");
+//       // });
+//     });
   }
 
   @override
