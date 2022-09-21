@@ -36,7 +36,7 @@ imageAddWaterMark(String imagePath, String textStr) async {
   canvas.saveLayer(Rect.fromLTWH(0, 0, image.width.toDouble(), image.height.toDouble()), Paint()..blendMode = BlendMode.multiply);
   var text = textStr;
   // 完整覆盖下的正方形面积
-  var rectSize = math.pow(dimension, 2);
+  // var rectSize = math.pow(dimension, 2);
   // 根据面积与字符大小计算文本重复次数
   // int textRepeating = ((rectSize / math.pow(30, 2) * 2) / (text.length + 8)).round(); // text.length + padding 是因为要添加个空格字符
 

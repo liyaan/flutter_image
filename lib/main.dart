@@ -43,10 +43,11 @@ class _MyHomePageState extends State<MyHomePage> {
       _counter++;
     });
     //拍照
-    XFile? file = await ImagePicker.platform.getImage(source: ImageSource.camera,imageQuality:50).then((value){
+    XFile? file = await ImagePicker.platform.getImage(source: ImageSource.camera,imageQuality:50).then((value) async {
       if(value != null){
         print(value.path);
-        imageAddWaterMark(value.path,"测试wwwwww");
+        File file = await imageAddWaterMark(value.path,"测试wwwwww");
+        print(file.path);
       }
 
     });
