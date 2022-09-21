@@ -43,9 +43,12 @@ class _MyHomePageState extends State<MyHomePage> {
       _counter++;
     });
     //拍照
-    XFile? file = await ImagePicker.platform.getImage(source: ImageSource.camera).then((value){
-      print(value!.path);
-      imageAddWaterMark(value!.path,"测试");
+    XFile? file = await ImagePicker.platform.getImage(source: ImageSource.camera,imageQuality:50).then((value){
+      if(value != null){
+        print(value.path);
+        imageAddWaterMark(value.path,"测试wwwwww");
+      }
+
     });
 
 //拍照图传至WaterMarkPage返回水印图

@@ -38,14 +38,14 @@ imageAddWaterMark(String imagePath, String textStr) async {
   // 完整覆盖下的正方形面积
   var rectSize = math.pow(dimension, 2);
   // 根据面积与字符大小计算文本重复次数
-  int textRepeating = ((rectSize / math.pow(30, 2) * 2) / (text.length + 8)).round(); // text.length + padding 是因为要添加个空格字符
+  // int textRepeating = ((rectSize / math.pow(30, 2) * 2) / (text.length + 8)).round(); // text.length + padding 是因为要添加个空格字符
 
-  math.Point pivotPoint = math.Point(dimension / 2, dimension / 2);
-  canvas.translate(pivotPoint.x.toDouble(), pivotPoint.y.toDouble());
-  canvas.rotate(-25 * math.pi / 180);
-  canvas.translate(-pivotPoint.distanceTo(math.Point(0, image.height)), -pivotPoint.distanceTo(math.Point(0, 0))); // 计算文本区域起始坐标分别到图片左侧顶部与底部的距离，作为文本区域移动的距离。
+  // math.Point pivotPoint = math.Point(dimension / 2, dimension / 2);
+  // canvas.translate(pivotPoint.x.toDouble(), pivotPoint.y.toDouble());
+  // canvas.rotate(-25 * math.pi / 180);
+  // canvas.translate(-pivotPoint.distanceTo(math.Point(0, image.height)), -pivotPoint.distanceTo(math.Point(0, 0))); // 计算文本区域起始坐标分别到图片左侧顶部与底部的距离，作为文本区域移动的距离。
   var textPainter = TextPainter(
-    text: TextSpan(text: (text.padRight(text.length + 8)) * textRepeating, style: TextStyle(fontSize: 30, color:Colors.red, height: 2)),
+    text: TextSpan(text: (text.padRight(text.length + 8)), style: const TextStyle(fontSize: 100, color:Colors.red, height: 2, fontWeight: FontWeight.bold)),
     maxLines: null,
     textDirection: ui.TextDirection.ltr,
     textAlign: TextAlign.start,
@@ -70,3 +70,4 @@ imageAddWaterMark(String imagePath, String textStr) async {
 
   return file;
 }
+
