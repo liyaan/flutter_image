@@ -37,7 +37,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-  String filePath = "";
+  String filePath ="2222";
   Future<void> _incrementCounter() async {
     setState(() {
       _counter++;
@@ -84,7 +84,17 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
-            if (filePath != null) Image.file(File(filePath),width: 200,height: 300,) else Container(),
+            InkWell(
+              child: filePath!="2222" ?Image.file(File(filePath),width: 200,height: 300,):Container(),
+              onTap: (){
+                print(filePath);
+                Get.to(WaterMarkPage(filePath))?.then((value){
+                  setState(() {
+                    filePath = value;
+                  });
+                });
+              },
+            )
           ],
         ),
       ),
@@ -95,11 +105,5 @@ class _MyHomePageState extends State<MyHomePage> {
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
-  Widget imageWidget(){
-    if(filePath.isNotEmpty){
-      print("filePath = $filePath");
 
-    }
-    return Container();
-  }
 }
