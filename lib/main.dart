@@ -37,16 +37,19 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-
+  String filePath = "";
   Future<void> _incrementCounter() async {
     setState(() {
       _counter++;
     });
     //拍照
-    XFile? file = await ImagePicker.platform.getImage(source: ImageSource.camera,imageQuality:50).then((value) async {
+    XFile? file = await ImagePicker.platform.getImage(source: ImageSource.camera,imageQuality:30).then((value) async {
       if(value != null){
         print(value.path);
         File file = await imageAddWaterMark(value.path,"测试wwwwww");
+        setState(() {
+          filePath = file.path;
+        });
         print(file.path);
       }
 
@@ -81,6 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
+            if (filePath != null) Image.file(File(filePath),width: 200,height: 300,) else Container(),
           ],
         ),
       ),
@@ -90,5 +94,12 @@ class _MyHomePageState extends State<MyHomePage> {
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
+  }
+  Widget imageWidget(){
+    if(filePath.isNotEmpty){
+      print("filePath = $filePath");
+
+    }
+    return Container();
   }
 }

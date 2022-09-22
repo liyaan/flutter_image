@@ -8,7 +8,6 @@ import 'dart:ui';
 import 'package:crypto/crypto.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 
 /// 图片加载工具类
@@ -37,7 +36,7 @@ class ImageLoaderUtils {
   ///[isReplace]当本地存在同名的文件（图片）时，true就是替换
   ///[isEncode]对保存的文件（图片）进行编码
   ///  最终保存到本地的文件 （图片）的名称为 picName.endFormat
-  Future<String> saveImageByUIImage(ui.Image image,
+  Future<String>  saveImageByUIImage(ui.Image image,
       {String? picName,
         String endFormat = "png",
         bool isReplace = true,
